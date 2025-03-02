@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
 const cors = require("cors")
+const path = require('path')
 
 const port = process.env.PORT || 3000
-
 
 const allowedOrigins = [
     'https://polite-smoke-0d1bfe610.6.azurestaticapps.net', 
@@ -19,6 +19,11 @@ app.use(cors({
         }
     }
 }))
+
+// Serve the test page at the root URL
+app.get('/', (request, response) => {
+    response.sendFile(path.join(__dirname, 'index.html'))
+})
 
 // Wake up endpoint
 app.get('/api/wake-up', (request, response) => {
@@ -44,7 +49,7 @@ app.use((request, response) => {
     response.send('404 - Not Found')
 })
 
-// Custom 500 page.
+
 app.use((err, request, response, next) => {
     console.error(err.message)
     response.type('text/plain')
