@@ -1,14 +1,12 @@
-# MERNa server including a template for Node.js and Express hosted on Microsoft Azure
-MERNa stands for MongoDB, Express, React, abd Node on Azure. 
+Cameron Wiegel 
+Dice Roller Server: This is the server side that will run all the calculations
 
-This repository serves as a template that can be used as a template to create a Node.js and Express based website hosted 
-on Microsoft Azure.
+Files you should have,
+    index.html 
+    diceRoller.css 
+    diceRoller.js
 
-Azure hosting notes:
-Select Node 18 LTS
+Credit to ChatGPT for suggestions and error correction and Eric Pougue for all the code template .
 
-To execute locally:
-git clone [[your-repository-url]]
-cd [[your-repository-url]]
-npm install express
-npm start
+Down below is a license down below with my license on top of it
+
