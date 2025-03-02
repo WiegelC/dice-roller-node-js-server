@@ -6,11 +6,11 @@ const path = require('path')
 const port = process.env.PORT || 3000
 
 const allowedOrigins = [
-    'https://polite-smoke-0d1bfe610.6.azurestaticapps.net', 
+    //'https://polite-smoke-0d1bfe610.6.azurestaticapps.net', 
     'http://localhost:5500' // For local testing
 ];
 
-/*app.use(cors({
+app.use(cors({
     origin: function(origin, callback) {
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true)
@@ -18,7 +18,7 @@ const allowedOrigins = [
             callback(new Error('Not allowed by CORS'))
         }
     }
-}))*/
+}))
 
 // Serve the test page at the root URL
 app.get('/', (request, response) => {
