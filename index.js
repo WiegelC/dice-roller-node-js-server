@@ -6,7 +6,7 @@ const path = require('path')
 const port = process.env.PORT || 3000
 
 const allowedOrigins = [
-    //'https://polite-smoke-0d1bfe610.6.azurestaticapps.net', 
+    'https://polite-smoke-0d1bfe610.6.azurestaticapps.net', 
     'http://localhost:5500' // For local testing
 ];
 
