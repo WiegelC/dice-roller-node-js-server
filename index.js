@@ -4,15 +4,37 @@ const cors = require("cors")
 
 const port = process.env.PORT || 3000
 
-// Enable CORS and static file serving
-app.use(express.static(__dirname + '/static'))
-app.use(cors({ origin: '*' }))
+
+const allowedOrigins = [
+    'https://polite-smoke-0d1bfe610.6.azurestaticapps.net', 
+    'http://localhost:5500' // For local testing
+];
+
+app.use(cors({
+    origin: function(origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}))
+
+// Wake up endpoint
+app.get('/api/wake-up', (request, response) => {
+    console.log('Server wake-up call received')
+    response.json({ status: 'Server is awake', timestamp: new Date().toISOString() })
+})
 
 // Endpoint for rolling a dice
 app.get('/api/roll-dice', (request, response) => {
     console.log('Calling "/api/roll-dice" on the Node.js server.')
     const result = Math.floor(Math.random() * 6) + 1
-    response.json({ value: result })
+    response.json({ 
+        value: result,
+        timestamp: new Date().toISOString(),
+        server: 'Azure Node.js Server'
+    })
 })
 
 // Custom 404 page.
@@ -32,5 +54,4 @@ app.use((err, request, response, next) => {
 
 app.listen(port, () => console.log(
     `Express started at \"http://localhost:${port}\"\n` +
-    `press Ctrl-C to terminate.`)
-)
+    `press Ctrl-C to terminate.`))
