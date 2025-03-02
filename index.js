@@ -137,7 +137,12 @@ app.get('/api/favorite-places', (req, res) => {
   res.json(favoritePlaces);
 });
 
-
+// Endpoint for rolling a dice
+app.get('/api/roll-dice', (request, response) => {
+    console.log('Calling "/api/roll-dice" on the Node.js server.')
+    const result = Math.floor(Math.random() * 6) + 1
+    response.json({ value: result })
+})
 
 // Custom 404 page.
 app.use((request, response) => {
